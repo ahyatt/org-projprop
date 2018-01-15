@@ -1,7 +1,7 @@
 * Description
 This is an elisp library for org-mode, adding the ability to reference and open
 projects. A project is anything with a name and a directory. The Projectile
-package is not needed, although there this package can optionally work with it.
+package is not needed, although this package can optionally work with it.
 
 * Setup
 
