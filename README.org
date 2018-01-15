@@ -6,8 +6,8 @@ package is not needed, although this package can optionally work with it.
 * Setup
 
 To use, you have to first configure ~org-project-list-funcs~ with a list of
-methods to find project locations. For example, if you have projects in ~~/src/~
-and ~~/Dropbox/src/~, you would configure ~org-project-list-functs~ like this:
+methods to find project locations. For example, if you have projects in ~$HOME/src/~
+and ~$HOME/Dropbox/src/~, you would configure ~org-project-list-functs~ like this:
 
 #+begin_src elisp
   (setq org-project-list-funcs
