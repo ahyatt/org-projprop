@@ -11,8 +11,8 @@ and ~$HOME/Dropbox/src/~, you would configure ~org-project-list-functs~ like thi
 
 #+begin_src elisp
   (setq org-project-list-funcs
-        '((directory \"~/src/\")
-          (directory \"~/Dropbox/src/\")))
+        '((directory "~/src/")
+          (directory "~/Dropbox/src/")))
 #+end_src
 
 The following methods are available:
@@ -56,7 +56,7 @@ The following symbols are available:
   - ~org-buffer~: Open a new indirect org buffer narrowed to the project
     heading.
 
-# Extending
+* Extending
 
 If you need additional ways to find projects, you can add new methods by adding
 a function with the name prefixed by ~org-project-list-~. Then you can refer to
