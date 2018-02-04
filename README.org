@@ -7,7 +7,7 @@ package is not needed, although this package can optionally work with it.
 
 To use, you have to first configure ~org-project-list-funcs~ with a list of
 methods to find project locations. For example, if you have projects in ~$HOME/src/~
-and ~$HOME/Dropbox/src/~, you would configure ~org-project-list-functs~ like this:
+and ~$HOME/Dropbox/src/~, you would configure ~org-project-list-funcs~ like this:
 
 #+begin_src elisp
   (setq org-project-list-funcs
@@ -30,7 +30,7 @@ for a heading.  To do that, add the following:
 #+end_src
 
 By default, once the project is set in a heading, anywhere underneath the
-heading, you can call `org-project-open'. It is useful to have this set to a
+heading, you can call ~org-project-open~. It is useful to have this set to a
 key.
 
 #+begin_src elisp
