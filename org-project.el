@@ -135,7 +135,8 @@ non-nil."
 Specifically, it's the same org file but with an indirecto
 buffer, narrowed to the parent heading with the project NAME."
   (let* ((buf-name (format org-project-org-buffer-format name))
-         (buf (make-indirect-buffer (current-buffer) buf-name t)))
+         (buf (or (get-buffer buf-name)
+                  (make-indirect-buffer (current-buffer) buf-name t))))
     (switch-to-buffer buf)
     (let ((orig-point (point)))
       (while (not (org-entry-get (point) org-project-property-name))
