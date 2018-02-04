@@ -137,7 +137,11 @@ buffer, narrowed to the parent heading with the project NAME."
   (let* ((buf-name (format org-project-org-buffer-format name))
          (buf (make-indirect-buffer (current-buffer) buf-name t)))
     (switch-to-buffer buf)
-    (org-narrow-to-subtree)
+    (let ((orig-point (point)))
+      (while (not (org-entry-get (point) org-project-property-name))
+        (outline-up-heading 1 t))
+      (org-narrow-to-subtree)
+      (goto-char orig-point))
     (when (featurep 'persp-mode)
       ;; In case we were using persp, make sure it acts on this indirect
       ;; buffer. It doesn't happen automatically, so we have to run this
