@@ -3,6 +3,10 @@ This is an elisp library for org-mode, adding the ability to reference and open
 projects. A project is anything with a name and a directory. The Projectile
 package is not needed, although this package can optionally work with it.
 
+This is not related to the other [[https://github.com/WolfeCub/org-project][org-project]], which organizes todo-items from a
+project into a single org-file. Renaming this project will happen once I find a
+reasonable alternative.  Suggestions welcome.
+
 * Setup
 
 To use, you have to first configure ~org-project-list-funcs~ with a list of
