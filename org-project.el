@@ -132,7 +132,7 @@ non-nil."
 
 (defun org-project-open-org-buffer (name _)
   "Create a new indirect buffer with only the relevant part of the org file.
-Specifically, it's the same org file but with an indirecto
+Specifically, it's the same org file but with an indirect
 buffer, narrowed to the parent heading with the project NAME."
   (let* ((buf-name (format org-project-org-buffer-format name))
          (buf (or (get-buffer buf-name)
