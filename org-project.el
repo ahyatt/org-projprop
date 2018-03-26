@@ -130,7 +130,7 @@ non-nil."
     ;; Now that we have a new perspective, clear up the windows.
     (delete-other-windows)))
 
-(defun org-project-open-org-buffer (name _)
+(defun org-project-open-org-buffer (name dir)
   "Create a new indirect buffer with only the relevant part of the org file.
 Specifically, it's the same org file but with an indirect
 buffer, narrowed to the parent heading with the project NAME."
@@ -143,6 +143,7 @@ buffer, narrowed to the parent heading with the project NAME."
         (outline-up-heading 1 t))
       (org-narrow-to-subtree)
       (goto-char orig-point))
+    (setq default-directory dir)
     (when (featurep 'persp-mode)
       ;; In case we were using persp, make sure it acts on this indirect
       ;; buffer. It doesn't happen automatically, so we have to run this
