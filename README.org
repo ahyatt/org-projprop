@@ -3,18 +3,14 @@ This is an elisp library for org-mode, adding the ability to reference and open
 projects. A project is anything with a name and a directory. The Projectile
 package is not needed, although this package can optionally work with it.
 
-This is not related to the other [[https://github.com/WolfeCub/org-project][org-project]], which organizes todo-items from a
-project into a single org-file. Renaming this project will happen once I find a
-reasonable alternative.  Suggestions welcome.
-
 * Setup
 
-To use, you have to first configure ~org-project-list-funcs~ with a list of
+To use, you have to first configure ~org-projprop-list-funcs~ with a list of
 methods to find project locations. For example, if you have projects in ~$HOME/src/~
-and ~$HOME/Dropbox/src/~, you would configure ~org-project-list-funcs~ like this:
+and ~$HOME/Dropbox/src/~, you would configure ~org-projprop-list-funcs~ like this:
 
 #+begin_src elisp
-  (setq org-project-list-funcs
+  (setq org-projprop-list-funcs
         '((directory "~/src/")
           (directory "~/Dropbox/src/")))
 #+end_src
@@ -26,20 +22,20 @@ The following methods are available:
     Does not take any arguments.
 
 You also need to set up the integration with org mode, so org-mode can select
-from the projects found via ~org-project-list-functs~ when setting the project
+from the projects found via ~org-projprop-list-functs~ when setting the project
 for a heading.  To do that, add the following:
 
 #+begin_src elisp
-  (org-project-setup)
+  (org-projprop-setup)
 #+end_src
 
 By default, once the project is set in a heading, anywhere underneath the
-heading, you can call ~org-project-open~. It is useful to have this set to a
+heading, you can call ~org-projprop-open~. It is useful to have this set to a
 key.
 
 #+begin_src elisp
   (add-hook 'org-mode-hook
-            (lambda () (define-key org-mode-map "\C-c o" 'org-project-open)))
+            (lambda () (define-key org-mode-map "\C-c o" 'org-projprop-open)))
 #+end_src
 
 When this is called, by default, the following actions happen:
@@ -47,11 +43,11 @@ When this is called, by default, the following actions happen:
   2. Open an eshell buffer in the directory of the project.
   3. Create an indirect org buffer narrowed to the heading with the project.
 
-These are configured by ~org-project-open-funcs~, with a list of symbols.  If you want to 
+These are configured by ~org-projprop-open-funcs~, with a list of symbols.  If you want to 
 change the configuration to not open an eshell buffer, here's an example of how to do it:
 
 #+begin_src elisp
-  (setq org-project-open-funcs '(persp org-buffer))
+  (setq org-projprop-open-funcs '(persp org-buffer))
 #+end_src
 
 The following symbols are available:
@@ -63,26 +59,26 @@ The following symbols are available:
 * Extending
 
 If you need additional ways to find projects, you can add new methods by adding
-a function with the name prefixed by ~org-project-list-~. Then you can refer to
+a function with the name prefixed by ~org-projprop-list-~. Then you can refer to
 this with the method name, minus the prefix, in ~org-prefix-list-funcs~.  For example,
 
 #+begin_src elisp
-  (defun org-project-list-mymethod (dir)
+  (defun org-projprop-list-mymethod (dir)
     ...
     )
 
-  (setq org-project-list-funcs '((mymethod "~/src")))
+  (setq org-projprop-list-funcs '((mymethod "~/src")))
 #+end_src 
 
 The function is expected to return a list of project name and directory conses.
 
 Similarly, if you need additional actions to happen when opening the project,
-you can add a function prefixed by ~org-project-open-~, and refer to the
-non-prefixed function name in ~org-project-open-funcs~.  An example:
+you can add a function prefixed by ~org-projprop-open-~, and refer to the
+non-prefixed function name in ~org-projprop-open-funcs~.  An example:
 
 #+begin_src elisp
-  (defun org-project-open-mymethod (name dir)
+  (defun org-projprop-open-mymethod (name dir)
     ...)
 
-  (add-to-list 'org-project-open-funcs 'mymethod)
+  (add-to-list 'org-projprop-open-funcs 'mymethod)
 #+end_src
